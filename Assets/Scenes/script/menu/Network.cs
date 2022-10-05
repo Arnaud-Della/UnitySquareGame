@@ -59,7 +59,7 @@ public class Network : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            SceneManager.LoadScene("testScync"); 
+            SceneManager.LoadScene("jeux"); 
         }
     }
 

@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class Network : MonoBehaviourPunCallbacks
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     // Start is called before the first frame update
     public  void Connection(string name)
     {

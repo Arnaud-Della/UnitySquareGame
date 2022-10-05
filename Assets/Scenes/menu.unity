@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   network: {fileID: 300030334}
+  name: {fileID: 1207912093}
 --- !u!1 &659901562
 GameObject:
   m_ObjectHideFlags: 0

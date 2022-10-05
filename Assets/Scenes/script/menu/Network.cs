@@ -6,9 +6,11 @@ public class Network : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     private Player player;
-    public  void Connection()
+    public  void Connection(string name)
     {
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.LocalPlayer.NickName = name;
+        player = PhotonNetwork.LocalPlayer;
     }
 
     #region Pun Callbacks
@@ -37,8 +39,12 @@ public class Network : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined OK");
         Debug.Log("Room OK = " + PhotonNetwork.CurrentRoom);
-        player = PhotonNetwork.LocalPlayer;
     }
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log(newPlayer.NickName);
+    }
     #endregion
+
 }

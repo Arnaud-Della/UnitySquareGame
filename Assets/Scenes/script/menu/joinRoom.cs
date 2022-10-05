@@ -1,13 +1,14 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class joinRoom : MonoBehaviour
 {
     public Network network;
+    public TMP_InputField name;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class joinRoom : MonoBehaviour
 
     private void OnClick()
     {
-        network.Connection();
+        network.Connection(name.text);
     }
 
 }

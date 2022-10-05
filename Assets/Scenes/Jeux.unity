@@ -268,7 +268,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b7ebae52df59fe540aad221fcadcb82c, type: 2}
+  - {fileID: 2100000, guid: 4345225956e176043b2f73b9ee1b0f2b, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -354,4 +354,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cube: {fileID: 2829068516676792717, guid: 47eab3e890a5e8a49a1303b87ac389c2, type: 3}
-  Sol: {fileID: 901137899}

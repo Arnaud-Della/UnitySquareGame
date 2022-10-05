@@ -1,16 +1,16 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Network : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
-    private Player player;
     public  void Connection(string name)
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.LocalPlayer.NickName = name;
-        player = PhotonNetwork.LocalPlayer;
     }
 
     #region Pun Callbacks
@@ -39,12 +39,25 @@ public class Network : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined OK");
         Debug.Log("Room OK = " + PhotonNetwork.CurrentRoom);
+        StartGame();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log(newPlayer.NickName);
+        Debug.Log("Un nouveau joueur vient de se connecter : " + newPlayer.NickName);
+        Debug.Log("Il y a " + PhotonNetwork.CurrentRoom.PlayerCount + " joueurs dans la room");
+        StartGame();
     }
+    
     #endregion
+
+    private void StartGame()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            SceneManager.LoadScene("Jeux"); 
+        }
+    }
+
 
 }

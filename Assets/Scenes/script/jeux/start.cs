@@ -12,8 +12,8 @@ public class start : MonoBehaviour
     private Network network;
     void Start()
     {
-
-        network = GetComponent<Network>();
+        network = GameObject.Find("Network").GetComponent<Network>();
+        Debug.Log(network);
         CreateCube();
         //Cube =Instantiate(Cube,new Vector3(-8,0,0),Quaternion.identity);
         //Cube.GetComponent<SpriteRenderer>().color = new Color((float)((float)Random.Range(0, 100)/100), (float)((float)Random.Range(0, 100) / 100), (float)((float)Random.Range(0, 100) / 100), 1);
@@ -23,13 +23,15 @@ public class start : MonoBehaviour
     {
         ListCube.Add(Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity));
         Debug.Log(ListCube[ListCube.Count - 1]);
-        network.photonView.RPC("CreateCubeSync", RpcTarget.All,ListCube[ListCube.Count - 1]);
+        network.photonView.RPC("CreateCubeSync", RpcTarget.All,ListCube[ListCube.Count - 1].GetPhotonView().ViewID);
         
     }
 
     [PunRPC]
-    public void CreateCubeSync(GameObject cube)
+    public void CreateCubeSync(int ID)
     {
+        GameObject cube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+        cube.GetPhotonView().ViewID = ID;
         ListCube.Add(cube);
     }
 

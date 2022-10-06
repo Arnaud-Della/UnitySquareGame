@@ -10,26 +10,23 @@ public class start : MonoBehaviour
     private List<GameObject> ListCube = new List<GameObject>();
     public GameObject Cube;
     private PhotonView photonView;
-    void Start()
+   void Start()
     {
         photonView = PhotonView.Get(this);
-        CreateCube();
-        //Cube =Instantiate(Cube,new Vector3(-8,0,0),Quaternion.identity);
-        //Cube.GetComponent<SpriteRenderer>().color = new Color((float)((float)Random.Range(0, 100)/100), (float)((float)Random.Range(0, 100) / 100), (float)((float)Random.Range(0, 100) / 100), 1);
+        photonView.RPC("CreateCubeSync", RpcTarget.Others);
     }
 
-    void CreateCube()
+    private void CreateCube()
     {
-        //Cube.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
-        photonView.RPC("CreateCubeSync", RpcTarget.All);
-
+        GameObject myCube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+        PhotonView myCubePhotonView = myCube.GetComponent<PhotonView>();
+        PhotonNetwork.AllocateViewID(myCubePhotonView);
     }
 
     [PunRPC]
-    public void CreateCubeSync(int ID)
+    protected virtual void CreateCubeSync()
     {
-        Debug.Log("Voici le View ID : " + ID);
-        GameObject cube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+        CreateCube();
     }
 
 }

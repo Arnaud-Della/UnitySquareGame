@@ -20,9 +20,13 @@ public class start : MonoBehaviour
 
     void CreateCube()
     {
-        ListCube.Add(Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity));
-        photonView.RPC("CreateCubeSync", RpcTarget.All,ListCube[ListCube.Count - 1].GetPhotonView().ViewID);
-        
+        Cube.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
+        GameObject cube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+        cube.GetPhotonView().ViewID = 2;
+        Debug.Log(PhotonNetwork.LocalPlayer);
+        photonView.RPC("CreateCubeSync", RpcTarget.Others, cube.GetPhotonView().ViewID);
+        ListCube.Add(cube);
+
     }
 
     [PunRPC]

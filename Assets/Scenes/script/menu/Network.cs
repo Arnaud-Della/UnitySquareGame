@@ -16,12 +16,6 @@ public class Network : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.LocalPlayer.NickName = name;
     }
-    public PhotonView GetPhotonView()
-    {
-        Debug.Log(PhotonView.Get(this));
-        return PhotonView.Get(this);
-
-    }
 
     #region Pun Callbacks
 

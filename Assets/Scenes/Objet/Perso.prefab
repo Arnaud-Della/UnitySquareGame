@@ -208,7 +208,7 @@ MonoBehaviour:
   speakerInUse: {fileID: -7491431403741918391}
   AutoCreateRecorderIfNotFound: 0
   UsePrimaryRecorder: 1
-  SetupDebugSpeaker: 0
+  SetupDebugSpeaker: 1
 --- !u!82 &-9119453775572196913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

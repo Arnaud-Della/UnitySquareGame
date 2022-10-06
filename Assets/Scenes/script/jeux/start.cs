@@ -12,21 +12,34 @@ public class start : MonoBehaviour
     private PhotonView photonView;
    void Start()
     {
+        int ID = CreateCube();
         photonView = PhotonView.Get(this);
-        photonView.RPC("CreateCubeSync", RpcTarget.Others);
+        photonView.RPC("CreateCubeSync", RpcTarget.Others,ID);
     }
 
-    private void CreateCube()
+    private int CreateCube(int ID=0)
     {
-        GameObject myCube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
-        PhotonView myCubePhotonView = myCube.GetComponent<PhotonView>();
-        PhotonNetwork.AllocateViewID(myCubePhotonView);
+        if (ID > 0)
+        {
+            GameObject myCube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+            PhotonView myCubePhotonView = myCube.GetComponent<PhotonView>();
+            myCubePhotonView.ViewID = ID;
+        }
+        else
+        {
+            GameObject myCube = Instantiate(Cube, new Vector3(-8, 0, 0), Quaternion.identity);
+            PhotonView myCubePhotonView = myCube.GetComponent<PhotonView>();
+            PhotonNetwork.AllocateViewID(myCubePhotonView);
+            ID = myCubePhotonView.ViewID;
+
+        }
+        return ID;
     }
 
     [PunRPC]
-    protected virtual void CreateCubeSync()
+    protected virtual void CreateCubeSync(int ID)
     {
-        CreateCube();
+        CreateCube(ID);
     }
 
 }

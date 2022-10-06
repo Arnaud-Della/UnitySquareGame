@@ -31,5 +31,6 @@ public class bouge : MonoBehaviour
         {
             this.transform.position = new Vector2(transform.position.x , transform.position.y + 10 * Time.deltaTime);
         }
+
     }
 }

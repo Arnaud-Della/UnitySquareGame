@@ -61,6 +61,12 @@ public class Network : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("Room");
     }
+
+    [PunRPC]
+    public void startGame()
+    {
+        SceneManager.LoadScene("Jeux");
+    }
     public int GetNbPlayer()
     {
         return PhotonNetwork.CurrentRoom.PlayerCount;

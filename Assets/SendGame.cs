@@ -19,4 +19,10 @@ public class SendGame : MonoBehaviour
     {
         network.GetComponent<PhotonView>().RPC("startGame", RpcTarget.All);
     }
+
+    [PunRPC]
+    public void startGame()
+    {
+        SceneManager.LoadScene("Jeux");
+    }
 }

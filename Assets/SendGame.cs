@@ -17,6 +17,7 @@ public class SendGame : MonoBehaviour
 
     private void OnClick()
     {
+        Debug.Log(network.GetComponent<PhotonView>());
         network.GetComponent<PhotonView>().RPC("startGame", RpcTarget.All);
     }
 }

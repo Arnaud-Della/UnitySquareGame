@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Network : MonoBehaviourPunCallbacks
 {
+    private string RoomName="default-room";
     private void Awake()
     {
         DontDestroyOnLoad(this);
     }
     // Start is called before the first frame update
-    public  void Connection(string name)
+    public  void Connection(string RoomName,string PlayerName)
     {
+        this.RoomName = RoomName;
         PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.LocalPlayer.NickName = name;
+        PhotonNetwork.LocalPlayer.NickName = PlayerName;
     }
 
     #region Pun Callbacks
@@ -31,7 +33,7 @@ public class Network : MonoBehaviourPunCallbacks
         // Try to join a random room
         Debug.Log("Lobby OK");
         RoomOptions roomOptions = new RoomOptions() { IsVisible = false, IsOpen = true, MaxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("roomName", roomOptions, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOptions, TypedLobby.Default);
     }
 
     public override void OnCreatedRoom()
@@ -43,25 +45,24 @@ public class Network : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined OK");
         Debug.Log("Room OK = " + PhotonNetwork.CurrentRoom);
-        StartGame();
+        JoinTheRoom();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("Un nouveau joueur vient de se connecter : " + newPlayer.NickName);
         Debug.Log("Il y a " + PhotonNetwork.CurrentRoom.PlayerCount + " joueurs dans la room");
-        StartGame();
+        JoinTheRoom();
     }
     
     #endregion
 
-    private void StartGame()
+    private void JoinTheRoom()
     {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        {
-            SceneManager.LoadScene("jeux"); 
-        }
+        SceneManager.LoadScene("Room");
     }
-
-
+    public int GetNbPlayer()
+    {
+        return PhotonNetwork.CurrentRoom.PlayerCount;
+    }
 }

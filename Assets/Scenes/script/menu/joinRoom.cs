@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class joinRoom : MonoBehaviour
 {
     public Network network;
-    public TMP_InputField name;
+    public TMP_InputField RoomName;
+    public TMP_InputField PlayerName;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class joinRoom : MonoBehaviour
 
     private void OnClick()
     {
-        network.Connection(name.text);
+        network.Connection(RoomName.text, PlayerName.text);
     }
 
 }

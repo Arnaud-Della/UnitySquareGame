@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/testScync.unity
     guid: c7b8b358985c62f4282a200ff07f50a7
+  - enabled: 1
+    path: Assets/Scenes/Room.unity
+    guid: da54d44368db99e499107300c4dec80f
   m_configObjects: {}

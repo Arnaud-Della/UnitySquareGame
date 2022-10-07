@@ -25,4 +25,5 @@ public class SendGame : MonoBehaviour
     {
         SceneManager.LoadScene("Jeux");
     }
+
 }

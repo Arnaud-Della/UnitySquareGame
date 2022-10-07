@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class SendGame : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject network;
+    private PhotonView network;
     void Start()
     {
-        network = GameObject.Find("Network");
+        network = PhotonView.Get(this);
         this.GetComponent<Button>().onClick.AddListener(OnClick);
     }
 

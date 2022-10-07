@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Network : MonoBehaviourPunCallbacks
 {
     private string RoomName="default-room";
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
